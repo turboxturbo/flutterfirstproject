@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1_test/auth_page.dart';
+import 'package:flutter_application_1_test/check.dart';
 import 'package:flutter_application_1_test/home.dart';
+import 'package:flutter_application_1_test/recovery_page.dart';
 import 'package:flutter_application_1_test/reg_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -24,9 +26,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false, // remove debug banner
       initialRoute: '/',
       routes: {
-        '/':(context)=>AuthPage(),
+        '/':(context)=>CheckPage(),
+        '/auth':(context)=>AuthPage(),
         '/reg': (context) => RegPage(),
         '/home': (context) => HomePage(),
+        '/recovery': (context) => RecoveryPage(),
       },
     );
   }

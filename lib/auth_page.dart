@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1_test/database/service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -80,7 +81,7 @@ class _AuthPagesState extends State<AuthPage> {
                 child: InkWell(
                   child: Text('Forgot the password', style: TextStyle(color: Colors.blue),),
                   onTap: (){
-                
+                    Navigator.popAndPushNamed(context, '/recovery');
                   },
                   
                 ),
@@ -103,7 +104,9 @@ class _AuthPagesState extends State<AuthPage> {
                     if (emailController.text.isNotEmpty && passController.text.isNotEmpty){
                       var user = await authService.singIn(emailController.text, passController.text);
                       if (user != null){
-                        Navigator.popAndPushNamed(context, '/home');
+                        final prefs = await SharedPreferences.getInstance();
+                        await prefs.setBool('isLoggedIn', true);
+                        Navigator.popAndPushNamed(context, '/');
                       }else{
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text("Пользователь не найден"),
