@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage>{
         items: [
           SalomonBottomBarItem(icon: Icon(Icons.home), title: Text('Home')),
           SalomonBottomBarItem(icon: Icon(Icons.search), title: Text('Search')),
-          SalomonBottomBarItem(icon: Icon(Icons.shopping_basket), title: Text('Sell')),
+          SalomonBottomBarItem(icon: Icon(Icons.sell), title: Text('Sell')),
           SalomonBottomBarItem(icon: Icon(Icons.person), title: Text('Profile')),
         ]
       ),
