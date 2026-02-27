@@ -172,7 +172,10 @@ class _RegPageState extends State<RegPage> {
                       if(user != null){
                         Navigator.popAndPushNamed(context, '/');
                       }else{
-
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("Incorrect data"),
+                          backgroundColor: Colors.black,)
+                        );
                       }
                     }else{
                       ScaffoldMessenger.of(context).showSnackBar(
