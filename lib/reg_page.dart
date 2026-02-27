@@ -15,6 +15,7 @@ class _RegPageState extends State<RegPage> {
   TextEditingController repeatPassController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   AuthService authService = AuthService();
+  UserTable userTable = UserTable();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -170,6 +171,9 @@ class _RegPageState extends State<RegPage> {
                     if (passController.text == repeatPassController.text){
                       var user = await authService.singUp(emailController.text, passController.text);
                       if(user != null){
+                        await userTable.addUserTable(nameController.text, emailController.text, passController.text, '');
+                        final prefs = await SharedPreferences.getInstance();
+                        await prefs.setBool('isLoggedIn', true);
                         Navigator.popAndPushNamed(context, '/');
                       }else{
                         ScaffoldMessenger.of(context).showSnackBar(
