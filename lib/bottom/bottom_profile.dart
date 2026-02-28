@@ -25,7 +25,7 @@ class _BottomProfileState extends State <BottomProfile> {
           ),
           Container(alignment: Alignment.center, child: Text('Имя')),
           Container(alignment: Alignment.center, child: Text('Почта')),
-          InkWell(child: Text('Редактирование', onTap: () {}))
+          InkWell(child: Text('Редактирование'), onTap: () {})
           SizedBox(
              height: MediaQuery.of(context).size.height * 0.04,
           ),

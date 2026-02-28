@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1_test/database/service.dart';
+import 'package:flutter_application_1_test/database/user_table/user_table.dart'
 
 class RegPage extends StatefulWidget {
   const RegPage({super.key});
@@ -22,30 +23,30 @@ class _RegPageState extends State<RegPage> {
       backgroundColor: Colors.white,
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center, // // дети по центру по вертикали
+          mainAxisAlignment: MainAxisAlignment.center, 
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.9,
               child: TextField(
                 controller: nameController,
-                cursorColor: Colors.black, // мигающий курсор - черного цвета
-                style: TextStyle(color: Colors.orange), // цвет текста при печати
+                cursorColor: Colors.black, 
+                style: TextStyle(color: Colors.orange), 
                 decoration: InputDecoration(
                   labelStyle: TextStyle(color: Colors.black),
-                  labelText: 'Name', // Текст, который становиться плавающим лейблом (плавает вверх, когда начинаешь вводить)
+                  labelText: 'Name', 
                   
-                  focusedBorder: OutlineInputBorder( // когда рамка находиться в фокусе (нажали)
-                    borderRadius: BorderRadius.circular(25), // закругление углов
+                  focusedBorder: OutlineInputBorder( 
+                    borderRadius: BorderRadius.circular(25), 
                     borderSide: BorderSide(color: Colors.blue),
                   ),
-                  enabledBorder: OutlineInputBorder( // когда на рамку не нажимали 
+                  enabledBorder: OutlineInputBorder( 
                     borderRadius: BorderRadius.circular(25),
                     borderSide: BorderSide(color: Colors.black26)
                   ),
                 ),
               ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.02,), // отступы между полями
+            SizedBox(height: MediaQuery.of(context).size.height * 0.02,),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.9,
               child: TextField(
@@ -66,7 +67,7 @@ class _RegPageState extends State<RegPage> {
                 ),
               ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.02,), // отступы между полями
+            SizedBox(height: MediaQuery.of(context).size.height * 0.02,), 
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.9,
               child: TextField(
@@ -97,7 +98,7 @@ class _RegPageState extends State<RegPage> {
                 decoration: InputDecoration(
                   labelStyle: TextStyle(color: Colors.black),
                   labelText: 'Password',
-                  suffixIcon: IconButton( // иконка глаза (скрыт или не скрыт пароль)
+                  suffixIcon: IconButton(
                     onPressed: () {},
                     icon: Icon(Icons.visibility),
                   ),
@@ -142,22 +143,22 @@ class _RegPageState extends State<RegPage> {
             Container(
               width: MediaQuery.of(context).size.width * 0.9,
               alignment: Alignment.center,
-              child: InkWell( // делает любой виджет кликабельным с эффектом ripple (кружок при нажатии)
+              child: InkWell( 
                 child: Text('By registreing, you agree to the Terms of Use and Privacy Policy',
                 style: TextStyle(color: Colors.blue,
                 fontSize: 13,
                  ),
                 ),
-                onTap: () {}, // перехож на экран восстановления  
+                onTap: () {}, 
               ),
             ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.02),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.045,
               width: MediaQuery.of(context).size.width * 0.8,
-              child: ElevatedButton( // — это кнопка с подъёмом / тенью (Material 3 стиль)
+              child: ElevatedButton( 
                 style: ButtonStyle(
-                  shape: WidgetStatePropertyAll( // значение применяется ко всем состоянием кнопки 
+                  shape: WidgetStatePropertyAll(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadiusGeometry.circular(25),
                     ),
@@ -205,14 +206,14 @@ class _RegPageState extends State<RegPage> {
             ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.015),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center, // // дети по центру по вертикали
+              mainAxisAlignment: MainAxisAlignment.center, 
               children: [
                 Text(
                   "Already have account?"
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.popAndPushNamed(context, '/'); // переход к странице "Вход"
+                    Navigator.popAndPushNamed(context, '/');
                   },
                   child: Text(
                     "Sign in",
