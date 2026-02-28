@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1_test/database/service.dart';
-import 'package:flutter_application_1_test/database/user_table/user_table.dart'
+import 'package:flutter_application_1_test/database/user_table/user_table.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegPage extends StatefulWidget {
   const RegPage({super.key});
