@@ -1,4 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1_test/database/storage/storage.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as path;
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class BottomProfile extends StatefulWidget {
   const BottomProfile({super.key});
@@ -8,6 +14,63 @@ class BottomProfile extends StatefulWidget {
 }
 
 class _BottomProfileState extends State <BottomProfile> {
+  final userid = Supabase.instance.client.auth.currentUser!.id;
+  dynamic docs;
+  String? url;
+  File? _selectedfile;
+  XFile? _file;
+  StorageCloud storageCloud = StorageCloud();
+
+  Future<void> getUserById()async{
+    try{
+      var user = await Supabase.instance.client.from('users').select().eq('id', userid).single();
+
+      setState(() {
+        docs = user;
+      });
+    }
+    catch(e){
+      return;
+    }
+  }
+
+  Future<void> selectedImageGallery()async{
+    final returnimage = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      _selectedfile = File(_selectedfile!.path);
+      _file = returnimage;
+    });
+  }
+
+  Future<void> uploadImage()async{
+    try{
+      await storageCloud.addImageCloud(_file!);
+    }
+    catch(e){
+      return;
+    }
+  }
+
+  Future<void> downloadUrl()async{
+    try {
+      final fileName = path.basename(_file!.path);
+      final image = Supabase.instance.client.storage.from('storage').getPublicUrl(fileName);
+
+      setState(() {
+        url = image;
+      });
+    } catch (e) {
+      return;
+    }
+  }
+
+  @override
+    void initState(){
+      getUserById();
+      super.initState();
+    }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,14 +80,14 @@ class _BottomProfileState extends State <BottomProfile> {
             height: MediaQuery.of(context).size.height * 0.3,
             width: MediaQuery.of(context).size.width * 0.4,
             child: CircleAvatar(
-              backgroundImage: NetworkImage('https://avtpbqenszsiyfzfyezl.supabase.co/storage/v1/object/public/storage/profile.png'),
+              backgroundImage: NetworkImage(docs['avatar'])
             )
           ),
           SizedBox(
              height: MediaQuery.of(context).size.height * 0.02,
           ),
-          Container(alignment: Alignment.center, child: Text('Имя')),
-          Container(alignment: Alignment.center, child: Text('Почта')),
+          Container(alignment: Alignment.center, child: Text(docs['full_name'])),
+          Container(alignment: Alignment.center, child: Text(docs['email'])),
           InkWell(child: Text('Редактирование'), onTap: () {}),
           SizedBox(
              height: MediaQuery.of(context).size.height * 0.04,

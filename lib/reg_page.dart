@@ -35,7 +35,6 @@ class _RegPageState extends State<RegPage> {
                 decoration: InputDecoration(
                   labelStyle: TextStyle(color: Colors.black),
                   labelText: 'Name', 
-                  
                   focusedBorder: OutlineInputBorder( 
                     borderRadius: BorderRadius.circular(25), 
                     borderSide: BorderSide(color: Colors.blue),
@@ -114,7 +113,7 @@ class _RegPageState extends State<RegPage> {
                 ),
               ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.02,),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.9,
               child: TextField(
