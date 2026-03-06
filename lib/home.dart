@@ -26,15 +26,6 @@ class _HomePageState extends State<HomePage>{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: AppBar(
-        actions: [IconButton(onPressed: () async{
-          await authService.logOut();
-          final prefs = await SharedPreferences.getInstance();
-          await prefs.setBool('isLoggedIn', false);
-          Navigator.popAndPushNamed(context, '/');
-        },
-        icon: Icon(Icons.logout))],
-      ),
       body: screens.elementAt(index),
       bottomNavigationBar: SalomonBottomBar(
         selectedItemColor: Colors.orange,

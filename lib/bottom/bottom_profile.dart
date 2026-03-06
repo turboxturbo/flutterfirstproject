@@ -1,9 +1,12 @@
 import 'dart:io';
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1_test/bottom/profile/edit_profile.dart';
+import 'package:flutter_application_1_test/database/service.dart';
 import 'package:flutter_application_1_test/database/storage/storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as path;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class BottomProfile extends StatefulWidget {
@@ -20,7 +23,7 @@ class _BottomProfileState extends State <BottomProfile> {
   File? _selectedfile;
   XFile? _file;
   StorageCloud storageCloud = StorageCloud();
-
+  AuthService authservice = AuthService();
   Future<void> getUserById()async{
     try{
       var user = await Supabase.instance.client.from('users').select().eq('id', userid).single();
@@ -88,7 +91,9 @@ class _BottomProfileState extends State <BottomProfile> {
           ),
           Container(alignment: Alignment.center, child: Text(docs['full_name'])),
           Container(alignment: Alignment.center, child: Text(docs['email'])),
-          InkWell(child: Text('Редактирование'), onTap: () {}),
+          InkWell(child: Text('Редактирование', style: TextStyle(color: Colors.blue),), onTap: () {
+            Navigator.push(context, CupertinoPageRoute(builder: (context) => EditProfilePage()));
+          }),
           SizedBox(
              height: MediaQuery.of(context).size.height * 0.04,
           ),
@@ -134,6 +139,30 @@ class _BottomProfileState extends State <BottomProfile> {
               child: Text('Разместить объявление', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
              )
           ),
+
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.015,
+          ),
+
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.8,
+            height: MediaQuery.of(context).size.height * 0.045,
+            child: ElevatedButton(
+              onPressed: () async {
+                await authservice.logOut();
+                final prefs = await SharedPreferences.getInstance();
+                await prefs.setBool('isLoggedIn', false);
+                Navigator.popAndPushNamed(context, '/');
+            }, 
+            style: ButtonStyle(
+              shape: WidgetStatePropertyAll(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadiusGeometry.circular(25),
+                )),
+              backgroundColor: WidgetStatePropertyAll(Colors.orange),
+            ),
+            child: Text("Sing out", style: TextStyle(color: Colors.white),)),
+          )
         ],
       ),
     );
