@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class EditProfilePage extends StatefulWidget {
   const EditProfilePage({super.key});
@@ -11,7 +10,12 @@ class EditProfilePage extends StatefulWidget {
 class _EditProfilePageState extends State<EditProfilePage> {
   TextEditingController fullnamecontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
-
+  TextEditingController emailcontroller = TextEditingController();
+  @override
+  void initState(){
+    super.initState();
+    emailcontroller.text = "email";
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +28,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
               width: MediaQuery.of(context).size.width * 0.9,
               child: TextField(
                 style: TextStyle(
-                  color: Colors.black),
+                  color: Colors.orange),
                 controller: fullnamecontroller,
                 cursorColor: Colors.orange,
                 decoration: InputDecoration(
@@ -53,7 +57,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
               child: TextField(
                 style: TextStyle(
                   color: Colors.orange),
-                controller: passwordcontroller,
+                controller: emailcontroller,
+                readOnly: true,
                 cursorColor: Colors.orange,
                 decoration: InputDecoration(
                   labelStyle: TextStyle(

@@ -123,7 +123,7 @@ class _BottomProfileState extends State <BottomProfile> {
           ),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.8,
-            height: MediaQuery.of(context).size.height * 0.05,
+            height: MediaQuery.of(context).size.height * 0.045,
              child: ElevatedButton(
               onPressed: () {
                 //Navigator.popAndPushNamed(context, '/home');
