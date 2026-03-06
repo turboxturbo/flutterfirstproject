@@ -99,7 +99,7 @@ class _BottomProfileState extends State <BottomProfile> {
           ),
           Container(
             alignment: Alignment.topLeft, 
-             padding: EdgeInsets.fromLTRB(35, 10, 10, 10),
+            padding: EdgeInsets.fromLTRB(35, 10, 10, 10),
             child: Text('Найстройки')
           ),
 
@@ -114,7 +114,7 @@ class _BottomProfileState extends State <BottomProfile> {
                   ListTile(
                     title: Text("Уведомления"),
                   )
-                ,]
+                ]
               ),
             ),
           ),
