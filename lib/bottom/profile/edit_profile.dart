@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class EditProfilePage extends StatefulWidget {
-  const EditProfilePage({super.key});
+  dynamic docs;
+  EditProfilePage({super.key, this.docs});
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
@@ -9,12 +10,12 @@ class EditProfilePage extends StatefulWidget {
 
 class _EditProfilePageState extends State<EditProfilePage> {
   TextEditingController fullnamecontroller = TextEditingController();
-  TextEditingController passwordcontroller = TextEditingController();
   TextEditingController emailcontroller = TextEditingController();
   @override
   void initState(){
+    fullnamecontroller.text = widget.docs('full_name');
+    emailcontroller.text = widget.docs('email');
     super.initState();
-    emailcontroller.text = "email";
   }
   @override
   Widget build(BuildContext context) {
@@ -81,28 +82,53 @@ class _EditProfilePageState extends State<EditProfilePage> {
               height: MediaQuery.of(context).size.height * 0.02,
             ),
 
+            // SizedBox(
+            //   width: MediaQuery.of(context).size.width * 0.9,
+            //   child: TextField(
+            //     style: TextStyle(
+            //       color: Colors.orange),
+            //     controller: passwordcontroller,
+            //     cursorColor: Colors.orange,
+            //     decoration: InputDecoration(
+            //       labelStyle: TextStyle(
+            //         color: Colors.black
+            //       ),
+            //       labelText: "Password",
+            //       focusedBorder: OutlineInputBorder(
+            //         borderRadius: BorderRadius.circular(25),
+            //         borderSide: BorderSide(color: Colors.blue)
+            //       ),
+            //       enabledBorder: OutlineInputBorder(
+            //         borderRadius: BorderRadius.circular(25),
+            //         borderSide: BorderSide(color: Colors.black)
+            //       )
+            //     ),
+            //   )
+            // ),
+
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.9,
-              child: TextField(
-                style: TextStyle(
-                  color: Colors.orange),
-                controller: passwordcontroller,
-                cursorColor: Colors.orange,
-                decoration: InputDecoration(
-                  labelStyle: TextStyle(
-                    color: Colors.black
-                  ),
-                  labelText: "Password",
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25),
-                    borderSide: BorderSide(color: Colors.blue)
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25),
-                    borderSide: BorderSide(color: Colors.black)
-                  )
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
+
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.8,
+              height: MediaQuery.of(context).size.height * 0.045,
+              child: ElevatedButton(
+                onPressed: () async {}, 
+                style: ButtonStyle(
+                  shape: WidgetStatePropertyAll(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadiusGeometry.circular(25),
+                    )),
+                    backgroundColor: WidgetStatePropertyAll(Colors.white),
                 ),
-              )
+                child: Text(
+                  'Password', 
+                  style: TextStyle(
+                  color: Colors.red, 
+                  fontWeight: FontWeight.bold
+                )),
+              ),
             ),
 
             SizedBox(
