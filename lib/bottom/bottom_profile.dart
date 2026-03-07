@@ -92,7 +92,7 @@ class _BottomProfileState extends State <BottomProfile> {
           Container(alignment: Alignment.center, child: Text(docs['full_name'])),
           Container(alignment: Alignment.center, child: Text(docs['email'])),
           InkWell(child: Text('Редактирование', style: TextStyle(color: Colors.blue),), onTap: () {
-            Navigator.push(context, CupertinoPageRoute(builder: (context) => EditProfilePage(docs: docs,)));
+            Navigator.push(context, CupertinoPageRoute(builder: (context) => EditProfilePage(docs: docs)));
           }),
           SizedBox(
              height: MediaQuery.of(context).size.height * 0.04,
