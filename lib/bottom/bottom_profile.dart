@@ -5,7 +5,6 @@ import 'package:flutter_application_1_test/bottom/profile/edit_profile.dart';
 import 'package:flutter_application_1_test/database/service.dart';
 import 'package:flutter_application_1_test/database/storage/storage.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart' as path;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -21,7 +20,6 @@ class _BottomProfileState extends State <BottomProfile> {
   dynamic docs;
   String? url;
   File? _selectedfile;
-  XFile? _file;
   StorageCloud storageCloud = StorageCloud();
   AuthService authservice = AuthService();
   Future<void> getUserById()async{
@@ -42,7 +40,6 @@ class _BottomProfileState extends State <BottomProfile> {
 
     setState(() {
       _selectedfile = File(_selectedfile!.path);
-      _file = returnimage;
     });
   }
 
