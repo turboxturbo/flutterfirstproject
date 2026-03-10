@@ -61,19 +61,19 @@ class _BottomProfileState extends State <BottomProfile> {
               backgroundImage: NetworkImage(docs['avatar'])
             )
           ),
-          TextButton.icon(onPressed: () async {
-            await selectedImageGallery();
-          }, 
-          icon: Icon(
-            Icons.add_photo_alternate,
-            color: Colors.orange,
-            size: 20,
-          ),
-          label: Text(
-            'Add photo',
-            style: TextStyle(color: Colors.orange, fontSize: 16),
-            ),
-          ),
+          // TextButton.icon(onPressed: () async {
+          //   await selectedImageGallery();
+          // }, 
+          // icon: Icon(
+          //   Icons.add_photo_alternate,
+          //   color: Colors.orange,
+          //   size: 20,
+          // ),
+          // label: Text(
+          //   'Add photo',
+          //   style: TextStyle(color: Colors.orange, fontSize: 16),
+          //   ),
+          // ),
 
           SizedBox(
              height: MediaQuery.of(context).size.height * 0.02,
