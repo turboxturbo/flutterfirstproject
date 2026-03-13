@@ -151,7 +151,7 @@ class _BottomProfileState extends State <BottomProfile> {
                 )),
               backgroundColor: WidgetStatePropertyAll(Colors.orange),
             ),
-            child: Text("Sing out", style: TextStyle(color: Colors.white),)),
+            child: Text("Sing out", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),)),
           )
         ],
       ),
