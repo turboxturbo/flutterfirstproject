@@ -102,6 +102,7 @@ class _BottomProfileState extends State <BottomProfile> {
                   ),
                   ListTile(
                     title: Text("Уведомления"),
+                    onTap: () => Navigator.popAndPushNamed(context, '/notifications'),
                   )
                 ]
               ),

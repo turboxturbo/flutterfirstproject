@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1_test/auth_page.dart';
+import 'package:flutter_application_1_test/bottom/profile/notifications.dart';
 import 'package:flutter_application_1_test/check.dart';
 import 'package:flutter_application_1_test/home.dart';
 import 'package:flutter_application_1_test/recovery_page.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         '/reg': (context) => RegPage(),
         '/home': (context) => HomePage(),
         '/recovery': (context) => RecoveryPage(),
+        '/notifications' : (context) => NotificationsPage(),
       },
     );
   }
