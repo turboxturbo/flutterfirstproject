@@ -217,6 +217,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         await userTable.updateName(fullnamecontroller.text, user_id);
                         Navigator.pop(context);
                       }
+                      else{
+                        if (_selectedfile == null && fullnamecontroller.text == widget.docs['full_name']){
+                          Navigator.pop(context);
+                        }
+                      }
                     }
                   }
                 },

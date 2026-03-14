@@ -52,108 +52,113 @@ class _BottomProfileState extends State <BottomProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.3,
-            width: MediaQuery.of(context).size.width * 0.4,
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(docs['avatar'])
-            )
-          ),
-          // TextButton.icon(onPressed: () async {
-          //   await selectedImageGallery();
-          // }, 
-          // icon: Icon(
-          //   Icons.add_photo_alternate,
-          //   color: Colors.orange,
-          //   size: 20,
-          // ),
-          // label: Text(
-          //   'Add photo',
-          //   style: TextStyle(color: Colors.orange, fontSize: 16),
-          //   ),
-          // ),
-
-          SizedBox(
-             height: MediaQuery.of(context).size.height * 0.02,
-          ),
-          Container(alignment: Alignment.center, child: Text(docs['full_name'])),
-          Container(alignment: Alignment.center, child: Text(docs['email'])),
-          InkWell(child: Text('Редактирование', style: TextStyle(color: Colors.blue),), onTap: () {
-            Navigator.push(context, CupertinoPageRoute(builder: (context) => EditProfilePage(docs: docs)));
-          }),
-          SizedBox(
-             height: MediaQuery.of(context).size.height * 0.04,
-          ),
-          Container(
-            alignment: Alignment.topLeft, 
-            padding: EdgeInsets.fromLTRB(35, 10, 10, 10),
-            child: Text('Найстройки')
-          ),
-
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.9,
-            child: Card(
-              child: Column(
-                children: [
-                  ListTile(
-                    title: Text("Безопасность"),
-                  ),
-                  ListTile(
-                    title: Text("Уведомления"),
-                    onTap: () => Navigator.popAndPushNamed(context, '/notifications'),
-                  )
-                ]
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+            SizedBox(
+              // height: MediaQuery.of(context).size.height * 0.3,
+              // width: MediaQuery.of(context).size.width * 0.4,
+              child: CircleAvatar(
+                backgroundImage: NetworkImage(docs['avatar']),
+                radius: 60,
+                backgroundColor: Colors.grey[300],
+              )
+            ),
+        
+            SizedBox(
+               height: MediaQuery.of(context).size.height * 0.02,
+            ),
+            Container(alignment: Alignment.center, child: Text(docs['full_name'])),
+            Container(alignment: Alignment.center, child: Text(docs['email'])),
+            InkWell(child: Text('Редактирование', style: TextStyle(color: Colors.blue),), onTap: () {
+              Navigator.push(context, CupertinoPageRoute(builder: (context) => EditProfilePage(docs: docs)));
+            }),
+            SizedBox(
+               height: MediaQuery.of(context).size.height * 0.04,
+            ),
+            Container(
+              alignment: Alignment.topLeft, 
+              padding: EdgeInsets.fromLTRB(35, 10, 10, 10),
+              child: Text('Найстройки')
+            ),
+        
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.9,
+              child: Card(
+                child: Column(
+                  children: [
+                    ListTile(
+                      title: Text("Безопасность"),
+                    ),
+                    ListTile(
+                      title: Text("Уведомления"),
+                      onTap: () => Navigator.popAndPushNamed(context, '/notifications'),
+                    )
+                  ]
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.015,
-          ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.8,
-            height: MediaQuery.of(context).size.height * 0.045,
-             child: ElevatedButton(
-              onPressed: () {
-                //Navigator.popAndPushNamed(context, '/home');
-              },
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.015,
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.8,
+              height: MediaQuery.of(context).size.height * 0.045,
+               child: ElevatedButton(
+                onPressed: () {
+                  //Navigator.popAndPushNamed(context, '/home');
+                },
+                style: ButtonStyle(
+                  shape: WidgetStatePropertyAll(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadiusGeometry.circular(25),
+                    ),
+                  ),
+                  backgroundColor: WidgetStatePropertyAll(Colors.orange),
+                ),
+                child: Text(
+                  'Разместить объявление', 
+                  style: TextStyle(
+                    color: Colors.white, 
+                    fontWeight: FontWeight.bold)
+                  ),
+               )
+            ),
+        
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.015,
+            ),
+        
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.8,
+              height: MediaQuery.of(context).size.height * 0.045,
+              child: ElevatedButton(
+                onPressed: () async {
+                  await authservice.logOut();
+                  final prefs = await SharedPreferences.getInstance();
+                  await prefs.setBool('isLoggedIn', false);
+                  Navigator.popAndPushNamed(context, '/');
+              }, 
               style: ButtonStyle(
                 shape: WidgetStatePropertyAll(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadiusGeometry.circular(25),
-                  ),
-                ),
+                  )),
                 backgroundColor: WidgetStatePropertyAll(Colors.orange),
               ),
-              child: Text('Разместить объявление', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-             )
-          ),
-
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.015,
-          ),
-
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.8,
-            height: MediaQuery.of(context).size.height * 0.045,
-            child: ElevatedButton(
-              onPressed: () async {
-                await authservice.logOut();
-                final prefs = await SharedPreferences.getInstance();
-                await prefs.setBool('isLoggedIn', false);
-                Navigator.popAndPushNamed(context, '/');
-            }, 
-            style: ButtonStyle(
-              shape: WidgetStatePropertyAll(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadiusGeometry.circular(25),
-                )),
-              backgroundColor: WidgetStatePropertyAll(Colors.orange),
-            ),
-            child: Text("Sing out", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),)),
-          )
-        ],
+              child: Text(
+                "Sing out", 
+                style: TextStyle(
+                  color: Colors.white, 
+                  fontWeight: FontWeight.bold),
+                )
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
