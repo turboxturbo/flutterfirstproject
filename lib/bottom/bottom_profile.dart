@@ -59,8 +59,6 @@ class _BottomProfileState extends State <BottomProfile> {
           children: [
             SizedBox(height: MediaQuery.of(context).size.height * 0.05),
             SizedBox(
-              // height: MediaQuery.of(context).size.height * 0.3,
-              // width: MediaQuery.of(context).size.width * 0.4,
               child: CircleAvatar(
                 backgroundImage: NetworkImage(docs['avatar']),
                 radius: 60,
@@ -76,9 +74,11 @@ class _BottomProfileState extends State <BottomProfile> {
             InkWell(child: Text('Редактирование', style: TextStyle(color: Colors.blue),), onTap: () {
               Navigator.push(context, CupertinoPageRoute(builder: (context) => EditProfilePage(docs: docs)));
             }),
+
             SizedBox(
                height: MediaQuery.of(context).size.height * 0.04,
             ),
+
             Container(
               alignment: Alignment.topLeft, 
               padding: EdgeInsets.fromLTRB(35, 10, 10, 10),
@@ -101,9 +101,11 @@ class _BottomProfileState extends State <BottomProfile> {
                 ),
               ),
             ),
+
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.015,
             ),
+
             SizedBox(
               width: MediaQuery.of(context).size.width * 0.8,
               height: MediaQuery.of(context).size.height * 0.045,
