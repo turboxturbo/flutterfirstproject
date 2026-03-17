@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1_test/bottom/search/search_product.dart';
+import 'package:flutter_application_1_test/category/all_category.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class BottomSearch extends StatefulWidget {
@@ -99,7 +100,9 @@ class _BottomSearchState extends State<BottomSearch> {
                   style: ButtonStyle(
                     foregroundColor: WidgetStatePropertyAll(Color(0xff5d7bff))
                   ),
-                  onPressed: () {}, 
+                  onPressed: () {
+                    Navigator.push(context, CupertinoPageRoute(builder: (context) => const FullCategoryPage()));
+                  }, 
                   child: Text(
                     'All'
                   )
@@ -132,14 +135,56 @@ class _BottomSearchState extends State<BottomSearch> {
             ),
           ),
           
-          // StreamBuilder(
-          //   stream: Supabase.instance.client.from('products').stream(primaryKey: ['id']),
-          //  builder: (context, snapshot){
-          //   // if (!snapshot.hasData){
-              
-          //   // }
-            
-          //  });
+
+          Expanded(
+            child: StreamBuilder(
+              stream: Supabase.instance.client.from('product_categories').stream(primaryKey: ['id']), 
+              builder: (context, snapshot){
+                if (!snapshot.hasData){
+                  return Center(
+                    child: CircularProgressIndicator(color: Colors.orange),
+                  );
+                }
+                var cat = snapshot.data;
+                return GridView.builder(
+                  itemCount: 6,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    childAspectRatio: MediaQuery.of(context).devicePixelRatio * 0.29,
+                  ),
+                  itemBuilder: (context, index) {
+                    return cardCategory(context, cat![index]);
+                  });
+                
+              }
+            ),
+          ),
+
+
+          Expanded(
+            child: StreamBuilder(
+              stream: Supabase.instance.client
+              .from('products')
+              .stream(primaryKey: ['id']),
+             builder: (context, snapshot){
+              if (!snapshot.hasData){
+                return Center(
+                  child: CircularProgressIndicator(color: Colors.orange),
+                );
+              }
+              var products = snapshot.data;
+              return ListView.builder(
+                itemCount: 2,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    leading: Image.network(prod![index]['image']),
+                    title: Text(prod![index]['price']),
+                    subtitle: Text(data),
+                  );
+                },);
+              }
+            ),
+          )
 
         ],
       ),
