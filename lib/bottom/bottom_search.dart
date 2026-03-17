@@ -12,7 +12,13 @@ class BottomSearch extends StatefulWidget {
 
 class _BottomSearchState extends State<BottomSearch> {
   Widget cardCategory(BuildContext context, dynamic docs){
-    return 
+    return Card(
+      color: Colors.white,
+      child: ListTile(
+      title: Image.network(docs['image']),
+      subtitle: Text(docs['name']),
+    ),
+    );
   }
   @override
   Widget build(BuildContext context) {
@@ -113,25 +119,27 @@ class _BottomSearchState extends State<BottomSearch> {
                 }
                 var cat = snapshot.data;
                 return GridView.builder(
+                  itemCount: 6,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 6,
+                    crossAxisCount: 3,
                     childAspectRatio: MediaQuery.of(context).devicePixelRatio * 0.29,
                   ),
-                  itemBuilder: (context, snapshot) {
-                    return
-                  })
+                  itemBuilder: (context, index) {
+                    return cardCategory(context, cat![index]);
+                  });
                 
               }
             ),
           ),
           
-          StreamBuilder(
-            stream: Supabase.instance.client.from('products').stream(primaryKey: ['id']),
-           builder: (context, snapshot){
-            if (!snapshot.hasData){
+          // StreamBuilder(
+          //   stream: Supabase.instance.client.from('products').stream(primaryKey: ['id']),
+          //  builder: (context, snapshot){
+          //   // if (!snapshot.hasData){
               
-            }
-           })
+          //   // }
+            
+          //  });
 
         ],
       ),
