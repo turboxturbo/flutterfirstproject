@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1_test/bottom/search/search_product.dart';
 import 'package:flutter_application_1_test/category/all_category.dart';
+import 'package:flutter_application_1_test/category/sort_category.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class BottomSearch extends StatefulWidget {
@@ -18,6 +19,9 @@ class _BottomSearchState extends State<BottomSearch> {
       child: ListTile(
       title: Image.network(docs['image']),
       subtitle: Text(docs['name']),
+      onTap: () {
+        Navigator.push(context, CupertinoPageRoute(builder: (context) => SortCategoryPage(docs: docs)));
+      },
     ),
     );
   }
@@ -38,7 +42,6 @@ class _BottomSearchState extends State<BottomSearch> {
             labelStyle: TextStyle(color: Colors.black),
             prefixIcon: Icon(Icons.search),
             labelText: 'Search items ',
-            //hintText: 'Введите email',
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(25),
               borderSide: BorderSide(color: Colors.blue),
@@ -172,14 +175,14 @@ class _BottomSearchState extends State<BottomSearch> {
                   child: CircularProgressIndicator(color: Colors.orange),
                 );
               }
-              var products = snapshot.data;
+              var prod = snapshot.data;
               return ListView.builder(
                 itemCount: 2,
                 itemBuilder: (context, index) {
                   return ListTile(
                     leading: Image.network(prod![index]['image']),
-                    title: Text(prod![index]['price']),
-                    subtitle: Text(data),
+                    title: Text(prod[index]['price'].toString()),
+                    subtitle: Text(prod[index]['name']),
                   );
                 },);
               }

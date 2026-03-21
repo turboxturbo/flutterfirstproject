@@ -29,6 +29,9 @@ class _FullCategoryPageState extends State<FullCategoryPage> {
             ),
           ],
         ),
+        onTap: () {
+          Navigator.push(context, CupertinoPageRoute(builder: (context) => ));
+        },
       ),
     );
   }
