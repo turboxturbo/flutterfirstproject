@@ -15,31 +15,29 @@ class _SortCategoryPageState extends State<SortCategoryPage> {
     return ListTile(
       leading: Image.network(
         docs['image'],
-        fit: BoxFit.contain,
-        width: MediaQuery.of(context).size.width * 0.13,
-        height: MediaQuery.of(context).size.height * 0.3,
+        // fit: BoxFit.contain,
+        // width: MediaQuery.of(context).size.width * 0.13,
+        // height: MediaQuery.of(context).size.height * 0.3,
       ),
       title: Text(docs['name']),
-      subtitle: SizedBox(
-        // width: MediaQuery.of(context).size.width * 0.8,
-        // height: MediaQuery.of(context).size.height * 0.045,
-        child: ElevatedButton(
-          onPressed: () {
-            //Navigator.popAndPushNamed(context, '/home');
-          },
-          style: ButtonStyle(
-            shape: WidgetStatePropertyAll(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadiusGeometry.circular(25),
-              ),
-            ),
-            backgroundColor: WidgetStatePropertyAll(Colors.orange),
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(docs['name']),
+          Text(
+            'Доступно: ${docs['count']}',
+            style: const TextStyle(color: Colors.black54),
           ),
-          child: Text(
-            'Добавить в корзину',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
+        ]
+      ),
+      trailing: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.orange,
+          foregroundColor: Colors.white,
         ),
+        onPressed: () {},
+        child: const Text('В корзину'),
       ),
     );
   }
@@ -47,7 +45,8 @@ class _SortCategoryPageState extends State<SortCategoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.docs['name'])),
+      backgroundColor: Colors.white,
+      appBar: AppBar(title: Text(widget.docs['name']), backgroundColor: Colors.white,),
       body: StreamBuilder(
         stream: Supabase.instance.client
             .from("products")

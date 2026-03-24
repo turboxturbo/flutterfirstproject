@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1_test/category/sort_category.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class FullCategoryPage extends StatefulWidget {
@@ -30,7 +31,7 @@ class _FullCategoryPageState extends State<FullCategoryPage> {
           ],
         ),
         onTap: () {
-          Navigator.push(context, CupertinoPageRoute(builder: (context) => ));
+          Navigator.push(context, CupertinoPageRoute(builder: (context) => SortCategoryPage(docs: docs)));
         },
       ),
     );
@@ -53,14 +54,15 @@ class _FullCategoryPageState extends State<FullCategoryPage> {
           }
 
           var cat = snapshot.data;
+          
           return GridView.builder(
             itemCount: cat!.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              childAspectRatio: MediaQuery.of(context).devicePixelRatio * 0.29,
+              childAspectRatio: MediaQuery.of(context).devicePixelRatio * 0.4,
             ),
             itemBuilder: (context, index) {
-              return tileCategory(context, cat![index]);
+              return tileCategory(context, cat[index]);
             },
           );
         },
