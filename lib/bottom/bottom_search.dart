@@ -21,7 +21,7 @@ class _BottomSearchState extends State<BottomSearch> {
       title: Image.network(docs['image']),
       subtitle: Text(docs['name']),
       onTap: () {
-        //Navigator.push(context, CupertinoPageRoute(builder: (context) => SortCategoryPage(docs: docs)));
+        Navigator.push(context, CupertinoPageRoute(builder: (context) => SortCategoryPage(docs: docs)));
       },
     ),
     );
@@ -68,7 +68,6 @@ class _BottomSearchState extends State<BottomSearch> {
                   borderRadius: BorderRadiusGeometry.circular(25),
                 ),
                 child: Container(
-                  
                   decoration: BoxDecoration(
                     borderRadius: BorderRadiusGeometry.circular(25),
                     gradient: LinearGradient(
