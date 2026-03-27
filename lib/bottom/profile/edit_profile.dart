@@ -48,7 +48,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Future<void> downloadUrl() async {
     try {
       final fileName = path.basename(_file!.path);
-      final image = Supabase.instance.client.storage
+      final image = await Supabase.instance.client.storage
           .from('storage')
           .getPublicUrl(fileName);
 
@@ -75,7 +75,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
       Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+         SnackBar(
           content: Text("Успешное сохранение"),
           backgroundColor: Color.fromARGB(156, 27, 12, 34),
         ),
