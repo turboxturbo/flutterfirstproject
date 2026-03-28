@@ -27,9 +27,12 @@ class _SearchProductPageState extends State<SearchProductPage> {
         // автоматически появляется кнопка назад
         backgroundColor: Colors.white,
         leading: SizedBox(
-          child: IconButton(onPressed: () {
-            Navigator.pop(context);
-          }, icon: Icon(Icons.arrow_back_ios)),
+          child: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.arrow_back_ios),
+          ),
         ),
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(60),

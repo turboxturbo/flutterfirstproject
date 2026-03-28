@@ -21,7 +21,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   UserTable userTable = UserTable();
   String user_id = Supabase.instance.client.auth.currentUser!.id;
   String? url;
-  File? _selectedfile;
+  File? _selectedfile; 
   XFile? _file;
   StorageCloud storageCloud = StorageCloud();
   AuthService authservice = AuthService();
@@ -32,7 +32,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     );
 
     setState(() {
-      _selectedfile = File(_selectedfile!.path);
+      _selectedfile = File(_selectedfile!.path); 
       _file = returnimage;
     });
   }
@@ -47,7 +47,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   Future<void> downloadUrl() async {
     try {
-      final fileName = path.basename(_file!.path);
+      final fileName = path.basename(_file!.path); // path.basename позволяет убрать путь файла 
       final image = await Supabase.instance.client.storage
           .from('storage')
           .getPublicUrl(fileName);
@@ -67,6 +67,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         builder: (context) =>
             Center(child: CircularProgressIndicator(color: Colors.orange)),
       );
+      
       await uploadImage();
       await Future.delayed(Duration(seconds: 4));
       await downloadUrl();
