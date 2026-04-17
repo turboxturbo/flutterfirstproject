@@ -1,4 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1_test/bottom/bottom_search.dart';
+import 'package:flutter_application_1_test/category/full_category.dart';
+import 'package:flutter_application_1_test/product/full_product.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class BottomHome extends StatefulWidget {
   const BottomHome({super.key});
@@ -29,7 +34,7 @@ class _BottomHomeState extends State<BottomHome> {
           onTap: () {
             Navigator.push(
               context,
-              CupertinoPageRoute(builder: (context) => BottomSearchPage()),
+              CupertinoPageRoute(builder: (context) => BottomSearch()),
             );
           },
           decoration: InputDecoration(

@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:benove_mobile/database/product_table/product_table.dart';
-import 'package:benove_mobile/database/storage/storage.dart';
+import 'package:flutter_application_1_test/database/product_table/product_table.dart';
+import 'package:flutter_application_1_test/database/storage/storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as path;

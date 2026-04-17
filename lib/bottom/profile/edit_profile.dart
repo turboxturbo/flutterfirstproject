@@ -9,8 +9,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class EditProfilePage extends StatefulWidget {
   dynamic docs;
-  EditProfilePage({super.key, this.docs});
-
+  EditProfilePage({super.key, this.docs});                                                                                                                                                                                                                                                                                   
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();
 }
@@ -71,7 +70,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
       await uploadImage();
       await Future.delayed(Duration(seconds: 4));
       await downloadUrl();
-
       await userTable.updateImage(url!, user_id);
 
       Navigator.pop(context);
