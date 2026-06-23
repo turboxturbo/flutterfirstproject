@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomePage(),
         '/recovery': (context) => RecoveryPage(),
         '/notifications' : (context) => NotificationsPage(),
-      },
+      }, 
     );
   }
 }
